@@ -1,0 +1,96 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{palatino}
+
+\newcommand{\mono}[1]{\textbf{\texttt{#1}}}
+
+\renewcommand\maketitle{
+{\flushleft{\textsf{%
+Ben Greenman
+\hfill
+DRAFT: NSF Technical Background
+}}\\
+\hrulefill}
+}
+\begin{document}
+\maketitle
+
+In April 2013, near the end of my final semester as an undergraduate student at Cornell, I found myself in an interesting position.
+The startup I had been working with for the past year, and had intended to work for after I graduated, had just called and given me a formal, full-time offer.
+So far so good, but they could not start paying me until the following October, after they finished a first round of fund raising.
+
+Despite this discouraging news, I might still have accepted their offer.
+It was a small and promising company; the five of us were like a family and held one another to high standards.
+%% I was proud of the work I had designed and implemented for the startup, and had a lot to look forward to as a core member of the growing company.
+Creating software at a fast-paced startup seemed, at the time, the best way to leverage the programming skills I had learned as an undergraduate so to grow as an individual and make an impact on the world.
+
+That said, I had a few doubts about working in industry.
+As much as I enjoyed the diverse work and fast pace, I felt there must be more to life than fine-tuning database queries, using a unit test suite as the final word on correctness, and leaving work promptly at 5:00pm for happy hour at a local bar.
+We were doing things well but we were not creating masterpieces.
+In retrospect, I am ashamed I did not fully realize this \emph{until} hearing the details of my offer, but I came to my senses, realized that life is too short for ugly things, knocked on Ross's door, and haven't looked back since.
+
+\vspace{0.5cm}
+
+That summer and the following year I completed a masters at Cornell and worked with Ross on a topic he had been thinking about since his time at UCSD: how to safely define operations like equality and comparison on parameterized classes in an object-oriented type system.
+This is a serious issue that is easily overlooked.
+For example, consider equality.
+Any Java programmer will tell you that checking if two objects are equal is trivial: just call the \mono{.equals()} method baked in to every object.
+However, this approach requires run-time type casts, does not scale to other operations, and completely ignores the fact that equality is not defined on many mathematical structures.
+Furthermore it allows expressions like \mono{42.equals(``hello world'')} to pass type-checking, which should really be flagged as type errors.
+One might try to fix this issue by declaring that a data structure is equatable if and only if its elements are equatable, but because mainstream languages support variance and F-bounded polymorphism, subtyping with these types is undecidable.
+
+When Ross first explained this project to me, I was blown away.
+After just a few minutes talking about lists and equality, we had a 12-line Java program that caused the \mono{javac} and Eclipse compilers to crash with a stack overflow.
+At the time I was curious why programmers did not encouter decidability issues in the wild.
+I had never been warned, either at school or in industry, to avoid certain patterns because they would break the compiler.
+Thus I spent that summer analyzing current practices to determine how programmers actually defined and used types similar to equatable in practice.
+To this end, I implemented a source code analyzer that would read the files in a Java project, create an XML document describing the supertypes and type parameters of each class or interface, and finally use Johnson's cycle-finding algorithm~\cite{johnson} to detect loops in the inheritance hierarchy.\footnote{https://github.com/bennn/inheritance-cycles}
+Finally, to determine how these types were used throughout a project, I modified the \mono{javac} compiler to log a warning where a type like equatable was used as a field, type argument, method parameter, or return type.\footnote{https://github.com/bennn/javab}
+
+After I ran this analysis on over 13 million lines of code taken from 60 open-source Java projects, Ross, myself, and his newly-acquired graduate student spent the Fall semester formalizing and writing up these findings.
+Together with Ross's student, I worked on formalizing a set of rules for inheritance and proving that these rules ensured decidable subtyping.
+Independently, I explored related work to determine how our observation fit with research at large, and wrote more drafts of the paper than I care to recall.
+Each time we met, Ross would offer guidance and advice; sure enough, each week my work improved (or rather, each day, as the deadline loomed) until we had converged on a product that all three of us were proud of~\cite{shapes}.
+Unlike the code I had written in industry, our paper was a finely-tuned and accessible piece of work.
+Moreover, it represented a combination of ingenuity, engineering, and formal argument that I will apply to every future problem I work on.
+Anything less would be an insult to myself and to my community.
+
+\newpage
+
+The following Spring, I continued to do research under Ross's guidance.
+Our paper had laid a foundation for decidable subtyping that agreed with widespread industry practice, but aside from computable joins we had not yet built any features leveraging this type system.
+In particular, we had not solved the original question of providing type-safe equality on arbitrary parameterized types!
+My goal for the Spring was then to leverage decidable subtyping to solve this issue.
+We wanted to be able to declare, for example, a list of objects such that the list was equatable to other lists if its elements were equatable to one another, and otherwise not.
+
+This behavior is more formally known as conditional inheritance, and was in fact studied before by Wehr et~al. in their work on JavaGI~\cite{javagi}.
+However JavaGI does not extend to object-oriented languages in general because it relies on the form of bounded existentials provided by wildcards to resolve ambiguous signatures.
+Languages like C\# and Scala, which use declaration-site variance, do not have this power.
+Nonetheless, I believed we could still build a system for expressive conditional inheritance, thereby formalizing properties like equality and clone-ability within the type system, rather than determining them in an ad-hoc manner at run time.
+
+To cut a long story short, I ran into serious trouble with expressiveness.
+Each set of type checking and method checking rules I wrote failed to catch some reasonable behavior.
+As an example, if an invariant array class is the subtype of a covariant list interface, we can get unbound method errors unless all array or list elements uniformly support the same characteristics.
+After each such disappointment, I would try to find the root of the problem, add the least-restrictive axiom or typing rule to the system, and begin critiquing anew.
+Thanks to Ross's incredible knack for finding counterexamples, I never lingered on a single design.
+Rather I spent a long time attempting to balance expressiveness with usefulness and reading foundational papers on the theories developed to explain object-oriented programming.
+My conclusion is that our understanding of objects is fundamentally wrong.
+That world grew like a jungle out in industry, where languages with objects proved essential for program organization, abstraction, and code reuse.
+Meanwhile theoretical computer scientists were preoccupied working on purely functional languages or simple imperative languages.
+Unlike objects, these academic efforts were built from first principles and connected the theories of types and programming languages to work done in category theory and in proof theory.
+Also unlike objects, they were done right.
+I fully sympathize with the contemporary opinion that objects were a fad.
+The fact is, that opinion was wrong.
+Objects matter; unfortunately, the fundamental reasons why they matter are difficult to uncover because ``objects'' as we know them from an ALGOL-like language combine a variety of programming concepts.
+Some behave like ADTs, others behave like automata, and still others are best described as abstract message-passing servers.
+At any rate, the conventional wisdom that an object is a self-referencing record, or just a collection of data with methods to access it, seems insufficient.
+
+Thankfully we have the luxury, in academia, of experimenting and occasionally failing.
+Although my Spring semester with Ross did not end in a publishable finding,\footnote{Dear advisors: I have a 12-page draft of the POPL paper. It's broken, but I could include it as a reference.} I learned a great deal.
+Above all else, I am excited to learn more and will continue to pursue this goal regardless of where life takes me.
+
+\bibliographystyle{plain}
+\bibliography{nsf}
+
+\end{document}
