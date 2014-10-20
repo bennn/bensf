@@ -1,0 +1,184 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{palatino}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+\newcommand{\mono}[1]{\textbf{\texttt{#1}}}
+
+\renewcommand\maketitle{
+{\flushleft{\textsf{%
+Ben Greenman
+\hfill
+DRAFT: NSF Research Proposal
+}}\\
+\hrulefill}
+}
+\begin{document}
+\maketitle
+\onehalfspacing
+
+\vspace*{0.5cm}
+
+%% \subsubsection*{First Approximation}
+%% PL research is building abstractions that model and inform real programming.
+%% From Church's lambdas to Java's interfaces, we are moving toward the ultimate goal of a full-spectrum language: an abstraction for modeling arbitrary programming languages (JS, Perl, Agda, ...) and the relationships between them.
+%% A "language of languages" would help the 3 key outcomes of proofs, performance, and people: statically-proved results will keep meaning even after being linked to untrusted code, abstraction barriers will allow parallelized and highly optimized compilation, and both students and professionals will benefit from smooth inter-language transitions.
+%% My own development\textemdash from teaching core functional programming to researching industrial-strength object-oriented type systems\textemdash has led me towards this goal of abstraction and interoperability.
+%% Under Matthias and Amal, experts in the dual areas of abstract source languages and abstract compilers, I will help advance this important research effort.
+
+%% \begin{center}
+%% \begin{tikzpicture}[overlay]
+%%   \color{red}
+%%   \draw[line width=0.5cm] (-1,0) -- (1,7);
+%% \end{tikzpicture}
+%% \end{center}
+
+%% \vfill{}
+
+%% \subsubsection*{Full-Spectrum Languages}%% for people
+%% Full spectrum languages are the future of software development.
+%% Programmers' needs and specifications constantly change; thus far programming languages have failed to adapt. %\footnote{Imagine building a house with one screwdriver, instead of a toolbox.}
+%% A full spectrum language will be the flexible backend that gradually introduces students to programming concepts, ensures security and modularity for large-scale software, and gives entrpreneurs the power to work in the domain-specific language in which they are most effective.
+%% Especially now, with {\large{\textbf{\textsc{BIG DATA}}}} to make sense of, a person would be crazy to work with anything less.
+
+%% \vfill{}
+
+%% \subsubsection*{Full-Spectrum Compilers}%% for proofs
+%% Full spectrum compilers are the key to reasoning about our multi-language, single-hardware world.
+%% We cannot change peoples' habits and provide them a ``one true source language'', but we can leverage the uniformity of hardware to build an ideal target language for compilation.
+%% Such a compiler would provide a means of specifying and proving compiler correctness for program fragments (in any language), it would give a uniform launchpad for optimizations and program transformations, and (hence) it would vastly improve users' pragmatic experience.
+%% As of now, nearly all static guarantees are erased before runtime; if we care about proofs, we must have a full spectrum compiler.
+
+%% \begin{center}
+%% \begin{tikzpicture}[overlay]
+%%   \color{red}
+%%   \draw[line width=0.5cm] (-4,0) -- (4,11);
+%%   \draw[line width=0.5cm] (4,0) -- (-4,11);
+%% \end{tikzpicture}
+%% \end{center}
+
+%% \vfill{}
+%% \newpage
+%% \vspace*{3cm}
+
+%% \begin{center}
+%%   \begin{tikzpicture}
+%%     % rectangle
+%%     \node[inner sep=0pt] (1) {};
+%%     \node[right of=1, xshift=3cm] (2){};
+%%     \node[inner sep=0pt,right of=2, xshift=3cm] (3){};
+
+%%     \node[below of=2, yshift=-0.7cm] (9) {$\textsc{Full-Spectrum Language}$};
+
+%%     \node[inner sep=0pt,below of=1, yshift=-2cm] (4){};
+%%     \node[right of=4, xshift=3cm] (5){};
+%%     \node[inner sep=0pt,right of=5, xshift=3cm] (6){};
+%%     \draw[-] (1) -- (3);
+
+%%     \draw[-] (1) -- (4);
+%%     \draw[-] (3) -- (6);
+
+%%     \draw[-] (4) -- (6);
+%%     % mapping in
+%%     \node[above of=2, yshift=2cm] (7) {};
+%%     \draw[->, dashed] (7) -- node[above right] {$\textsc{Amal}$} (2);
+%%     \node[above of=1, yshift=2cm] (12) {};
+%%     \node[above of=3, yshift=2cm] (13) {};
+%%     \draw[->, dashed] (12) -- (2);
+%%     \draw[->, dashed] (13) -- (2);
+%%     % mapping out
+%%     \node[below of=5, yshift=-2cm] (8) {};
+%%     \draw[->, dashed] (5) -- node[below right] {$\textsc{Matthias}$} (8);
+%%     \node[below of=4, yshift=-2cm] (10) {};
+%%     \node[below of=6, yshift=-2cm] (11) {};
+%%     \draw[->, dashed] (5) -- (10);
+%%     \draw[->, dashed] (5) -- (11);
+%%   \end{tikzpicture}
+%% \end{center}
+%% \vfill*{}
+%% %% DAMMIT ALL WRONG
+
+%% \newpage
+
+%% Apparently I understand the FSL vision, but \emph{I don't buy it}.
+%% Sure we can build one, but I don't think we can convert people.
+%% Much more realistic, I think, is to compile other languges into this FSL, then do all the correctness magic.
+
+%% (Why did they interrupt me when I was saying this? I must have misunderstood)
+
+%% Aha, here's what I think happened:
+%% \begin{itemize}
+%% \item I understand FSL, but I don't believe in it. Also it's more familiar to me because it's people.
+%% \item I think I believe in FSC, but I don't understand it. Also it's more intimidating because compilers and proofs.
+%%   When Amal casually says ``translation validation'' I think of the nightmare of implementing it.
+%% \end{itemize}
+
+%% \vspace{1cm}
+
+\subsubsection*{What ~~ (\emph{a spectrum of ideas is spread across languages, we can bring these ideas into one language})}
+Programming languages are aptly characterized as tools; each has a few strengths and a few weaknesses, but as a whole the ``toolbox'' of modern-day languages helps developers to realize a wide spectrum of ideas.
+This model has worked thus far, but I envision a future where full-spectrum ideas and applications are served by correspondingly full-spectrum languages; languages that not only support the range of styles a developer needs but also mediate the interactions between them.
+%% Instead of creating loosely coupled programs written in a variety of languages, a developer may use a single, full-spectrum language 
+
+\vfill{}
+\subsubsection*{Why ~~ (\emph{each of these points will expand to a paragraph})}
+
+~~~~~~A full-spectrum language will allow developers to more faithfully encode their designs. % (more time thinking and less time engineering).
+
+A full-spectrum language will allow more performant code.
+
+A full-spectrum language will help students learn new programming concepts. % As opposed to sharp, brand-new-language transitions when they want to try something new
+
+A full-spectrum language will improve the stability of multi-language software projects.
+
+A full-spectrum language will improve the flexibility of large software projects.
+
+A full-spectrum language will significantly advance programming languages research.
+%% contracts, types, blame
+%% compiler corectness, fully-abstract compilers
+%% lenses
+%% (i.e.program trasformations)
+
+\vfill{}
+\subsubsection*{How}
+%% A full-spectrum language is long overdue.
+%% As a research community, we have for years now, observed that practitioners frequently depend on multiple languages and studied isolated cases of interoperability.
+%% We need to analyze the common structure within these ad-hoc efforts and create more general models.
+%% That said, past research has laid an excellent groundwork for building the first full-spectrum language.
+%% The way forward is clear.
+
+%% Untyped and dependently typed languages are certainly of interest, but we might also consider assembly languages, query languages, and markup languages.
+%% On the other hand, spaghetti languages are no substitute for spaghetti code, so we must proceed thoughtfully.
+
+A useful full-spectrum language must be expressive and extensible.
+Regarding expressiveness, we must first develop a core framework for expressing a spectrum of programming languages\textemdash not the whole spectrum, but a wider range than any prior work.
+Second, we must implement and evaluate our core framework.
+Regarding extensibility, we must extend this core framework with specific new targets.
+After performing these preliminary extensions, we must use the lessons learned to build a generalized algorithm for broadening the spectrum.
+This could be as simple as a Coq package with well-documented holes for the user to fill in.
+
+The crucial part of our language will be the boundaries separating components of the full spectrum.
+These boundaries will need to combine the correct-by-construction guarantees of type systems with the intuitive and infectious power of contract systems.
+As such, our research will include practicable, space-efficient contracts; type systems that can encode more of the diverse specs supported by contracts; and graceful transitions from contracts to types.
+
+%% As a concrete first step, we might combine the dependent interoperability of Osera et. al~\cite{osera} with the multi-language system of Matthews and Ahmed~\cite{matthews} to reason about untyped, typed, and dependently typed software.
+%% %% <whitespace>
+%% The key feature of this framework will be the boundaries between each paradigm in the spectrum; a truly effective design will incorporate features of contract and type systems.
+%% On one hand, types provide statically-assured guarantees and are the answer for correct-by-construction software~\cite{constable}.
+%% However, contracts in the style of Findler and Felleisen~\cite{ff} are easier to learn, more expressive, and infectious.\footnote{According to Findler's ICFP 2014 keynote speech: \url{https://www.youtube.com/watch?v=gXTbMPVFP1M}}
+%% Following the inspiration of Flanagan's hybrid type checking~\cite{knowles} and Greenberg's manifest contracts~\cite{greenberg2013manifest}, systems where contracts influence type judgments, I suggest contracts as the initial design and type systems to follow suit.
+%% This implies three directions for future research: practicable space-efficient contract systems, type systems that can encode the diverse specs supported by contracts, and graceful transitions from contracts to types.
+%% Regarding that final point, Greenberg observed that over 80\% of contracts in the PLT Racket codebase are only enforcing simple type signatures~\cite{greenberg2013manifest}; I intend to investigate the potential for an automated conversion or a linter-like guide from the contract system to simple types.
+\vfill{}
+
+%% use Oz, Grace as inspiration
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{nsf}
+
+\end{document}
