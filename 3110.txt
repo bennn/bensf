@@ -1,0 +1,19 @@
+Things I did for cs3110:
+- On staff from 2012sp to 2014sp
+- Held 2-4 office hours per week
+- Taught section twice a week for 4 semesters
+- Managed staff code repository, migrated repo from SVN to Github
+- Managed course web page
+- Helped manage CMS, helped organize design reviews
+- Ran MOSS cheating detection software
+- Rewrote test harness
+- Proctored at least 2 exams each semester
+- Stayed to the end of almost every grading session
+  - Spent a lot of time trying to give partial credit when code did not compile
+- Active in training new staff
+- Helped with Q/A on Piazza:
+  - 2014sp (146 students, 30 staff) : 104 days online,  704 posts viewed, 230 contributions
+  - 2013fa (269 students, 35 staff) : 200 days online,  874 posts viewed, 194 contributions
+  - 2013sp (82 students,  19 staff) : 332 days online,  656 posts viewed, 188 contributions
+  - 2012fa (131 students, 18 staff) : 439 days online, 1217 posts viewed, 654 contributions
+  - 2012sp (80 students,  16 staff) : 548 days online,  754 posts viewed, 285 contributions
