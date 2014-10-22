@@ -2,10 +2,10 @@
 
 \usepackage[in]{fullpage}
 \usepackage{multicol}
+\usepackage{hyperref}
 
 \newcommand{\mono}[1]{\textbf{\texttt{#1}}}
 
-%% TODO fix titles
 \newcommand{\hdr}[2]{\vspace{-0.4cm}{\flushleft{\hrulefill\\\textbf{#1}\hfill{#2}\\\vspace{-0.2cm}\hrulefill}}\vspace{0.1cm}}
 
 \begin{document}
@@ -25,23 +25,15 @@
 %% Your ideas and examples do not have to be confined necessarily to the discipline that you have chosen to pursue.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-%% - Grew up ignorant of academia, college seemed a pre-req for a good job. Never knew what I wanted to do (it's not like I was "destined" for CS research), but high school gave me an appreciation for learning & college showed me this beautiful and useful field to dive in to.
-%% - Worked as janitor for 2 years of college, the experience kept me grounded. I talked with students during the day and working class people (nurses, train yard workers, consultants, engineers, etc) at night.
-%% - Quit janitor job to TA computer science. Taught 5 semesters, recognized in 2013 and 2014 with teaching awards.
-%% - Worked at startup over summer + during school year, 2-person team designing and building things fast.
-%% - Researched with Ross
-%% - I need the nsf because I want to work between two advisors
-
 \hdr{DRAFT: NSF Personal Statement}{Ben Greenman}
 
 %% TODO probably want to section-ize
-I fell in love with computer science when I took the introductory course on functional programming at Cornell University in Fall 2011.\footnote{http://www.cs.cornell.edu/Courses/cs3110/2011fa/}
-Although I had taken programming courses before, this course was how I learned of beautiful ideas like polymorphism, folding, type inference, and induction-recursion.
-More importantly, the course also taught me to engage with these ideas firsthand.
+I fell in love with computer science when I took the introductory course on functional programming at Cornell University in Fall 2011.\footnote{\url{http://www.cs.cornell.edu/Courses/cs3110/2011fa/}}
+Although I had taken programming classes before, this was my first experience with beautiful ideas like polymorphism, folding, type inference, and induction-recursion.
+More importantly, this course taught me to engage with these ideas firsthand.
 %% Unlike the classically-motivated math courses I had taken, which had also introduced beautiful ideas, in functional programming I could go home and build the abstract structures discussed in class.
 Lectures on streams and circular lists became especially poignant after I had implemented operations on these ``infinite'' collections and watched as my programs looped indefinitely.
-Indeed the entire course~\textemdash~up to the final punch line that all we had learned could be built from atoms called ``lambdas''\textemdash~was so exciting that I spent the next five semesters helping run it as a TA and am still delighted to revisit the material.
+Indeed the entire course~\textemdash~up to the final punch line that all we had learned could be built from atoms called ``lambdas''\textemdash~was so exciting that I spent the next five semesters helping manage it as a teaching assistant.
 
 %% During that time I wrote and graded numerous homework and exam questions, helped the course scale from 80 to 300 students as enrollment boomed, and above all else shared these beautiful and useful ideas to hundreds of fellow students.
 %% Try as I might, I cannot think of a more rewarding way to have spent my free time.
@@ -55,20 +47,21 @@ As an undergraduate, I was embarrassed to admit that; it seemed that other stude
 But now I realize this thinking was completely wrong!
 Coding \emph{is} understanding.
 %% TODO a little awkwards, this sentence doesn't quite follow
-Research ideas are of little value unless they are supported by real models and experiments.
-A high-level understanding of, say, a fully-verified operating system is nice to have, but the bottom line is whether such a system has been built and what we can learn from the artifact.
+%% Research ideas are of little value unless they are supported by real models and experiments.
+A high-level knowledge of, say, a fully-verified operating system is nice to have, but the bottom line is whether one can build such a system and what we can learn from the artifact.
 %% Consequently, the most influential research is that which has been built.
-I am grateful to have learned this lesson early in my career.
+In research, the lesson is that theories mean little without supporting experiments; in life, I have learned that the best way to teach an idea (programming or otherwise) is to help another person build it.
+%% I am grateful to have learned this lesson early in my career.
 
-Second, I had loved teaching functional programming at Cornell; in fact, one student wrote a course evaluation saying: ``I have to imagine that if functional programming was a person, [Ben] would want to marry it. It's adorable.''.
-At Northeastern University, I have opportunities both to serve as a university TA and to get involved with interdisciplinary outreach by teaching mathematics to underprivileged middle and high-school students through the Bootstrap program.\footnote{http://www.bootstrapworld.org}
+Second, I loved teaching and mentoring at Cornell; in fact, one student wrote a course evaluation saying: ``I have to imagine that if functional programming was a person, [Ben] would want to marry it. It's adorable.''.
+At Northeastern, I am both continuing as university TA and getting involved with interdisciplinary outreach by teaching mathematics to middle and high-school students through the Bootstrap and ProgramByDesign initiatives.\footnote{Bootstrap: \url{http://www.bootstrapworld.org} \qquad ProgramByDesign: \url{http://www.programbydesign.org/}}
 Bootstrap offers afterschool programs where students learn algebra by programming (again, coding is understanding).
 I will be involved with this program because Matthias Felleisen, whose educational outreach over the past 20 years laid the groundwork for the bootstrap program, is one of my two faculty advisors and Emmanuel Schanzer, founder of the Bootstrap program, is currently earning his Ph.D in Mathematics Education at Harvard.
 
 %%%%
 
 Back to my undergraduate experience, for nearly two years I was quite happy taking courses, teaching functional programming, and meanwhile working part-time as a software engineer at an early-stage startup.
-After graduation, I planned to work full-time writing code with the startup; however, I was not entirely confident in this decision.
+After graduation, I had planned to work full-time with this startup; however, I was not entirely confident in this decision.
 
 %% #practice2theory
 My first priority as an undergraduate had been to learn how to code.
@@ -82,25 +75,25 @@ So I instead chose to do a Masters of Engineering at Cornell, began doing resear
 \hdr{Decidable Subtyping for Object-Oriented Langauges}{Summer~\textendash~Fall 2013}
 
 My first research project with Ross was an investigation into object-oriented type systems.
-Before we met, he had been working with professionals at Red Hat and JetBrains to build a new language, and was currently investigating how to define operations like equality and ordering on arbitrary data structures.
+Before we met, he had been talking with professionals at Red Hat and JetBrains and was currently investigating how to define operations like equality and ordering on arbitrary data structures.
 This problem is easily overlooked; for example, consider equality.
 Any Java programmer will tell you that checking if two objects are equal is simple: just call the \mono{equals} method baked in to every object.
 However, this approach requires run-time type casts, does not scale to other operations, and completely ignores the fact that equality is not defined on functions.
 Furthermore it allows expressions like \mono{42.equals(`hello')} to pass type-checking instead of being flagged as errors.
-One might try to fix this issue by declaring that a data structure is equatable if and only if its elements are equatable, but because mainstream languages support variance and F-bounded polymorphism, asking this question leads to an undecidable subtyping judgment.
+Even worse, straightforward attempts to fix this issue lead to undecidable subtyping judgments because of the combination of variance and F-bounded polymorphism provided by mainstream languages.
 
 When Ross first explained this project to me, I was blown away.
 After just a few minutes talking about lists and equality, we had a 12-line Java program that caused the \mono{javac} and Eclipse compilers to crash with a stack overflow.
-Curious to learn why programmers did not encounter similar issues in practice, I implemented a source code analyzer that would detect cycles in the inheritance hierarchy of a Java project.\footnote{https://github.com/bennn/inheritance-cycles}
-Then to determine how these cycles were used, I modified the \mono{javac} compiler to log a warning whenever a class/interfaces used to complete a cycle was used as a field, type argument, method parameter, or return type.\footnote{https://github.com/bennn/javab}
+Curious to learn why programmers did not encounter similar issues in practice, I implemented a source code analyzer that would detect cycles in the inheritance hierarchy of a Java project.\footnote{\url{https://github.com/bennn/inheritance-cycles}}
+Then to determine how these cycles were used, I modified the \mono{javac} compiler to log a warning whenever a class/interfaces used to complete a cycle described a field, type argument, method parameter, or return type.\footnote{\url{https://github.com/bennn/javab}}
 After running this analysis on over 13 million lines of code taken from 60 open-source Java projects, we concluded that classes/interfaces like Java's \mono{Equatable}, which create inheritance loops, are used \emph{only} to make such loops.
 Thus, Ross, myself, and his newly-acquired graduate student spent the Fall creating a practical algorithm for decidable subtyping that leveraged this observation~\cite{shapes}.
-We presented our findings this summer, and I was very proud that we had thoughtfully solved a problem motivated by colleagues in industry.
+We presented our findings in Edinburgh this summer, and I was very proud that we had thoughtfully solved a problem motivated by colleagues in industry.
 
 \hdr{Conditional Inheritance}{Spring 2014}
 
-The following Spring, I continued to do research with Ross.
-Our PLDI paper had addressed decidable subtyping, but we had not solved the original question of providing type-safe equality on arbitrary data structures!
+The following Spring, I continued this investigation of object-oriented type systems.
+Although our PLDI paper had addressed decidable subtyping, we had not yet solved the original question of providing type-safe equality on arbitrary data structures!
 
 At the time, the answer seemed straightforward.
 We needed conditional inheritance to express properties like the definition of comparable lists: a list may be compared to other lists provided both lists are the same type and the elements inside the lists may be compared.
@@ -110,8 +103,8 @@ This task proved difficult.
 Week after week, I would present a design to Ross.
 Within a few days one of us would realize a corner-case it missed.
 After 4 months of iteration, we admitted that any correct design along these lines will be too restrictive to be practically useful.
-In light of this, I am now building a language and type-checker that allows conditional inheritance only on invariant classes and interfaces.
-The goal is to test whether this more restricted strategy can still express popular libraries like \mono{java.util.collections}.
+In light of this, I am now building a language and type-checker that allows conditional inheritance, but only on invariant classes and interfaces.
+The goal is to test whether this more restricted strategy can still express necessary utilities like the Java and Scala Collections libraries.
 
 %% Thankfully scientists have the luxury of experimenting and occasionally failing.
 %% Although my Spring semester with Ross did not end in a publishable finding, I still learned a great deal about both the foundations of object-oriented programming and the problems uet unsolved.
@@ -120,18 +113,16 @@ The goal is to test whether this more restricted strategy can still express popu
 
 Also in Spring 2013, I worked with Professor Dexter Kozen and an exchange student from the University of Copenhagen, Ulrik Rassmussen, on coalgebraic decision procedures.
 Much of Dexter's research is on practical applications of Kleene algebra, the language of iteration.
-Two recent examples are NetKAT~\cite{anderson2014netkat}, a sound and complete network programming language, and KAT+B!~\cite{GKM14a}, which adds mutable boolean variables to a Kleene Algebra.
+Two recent examples are NetKAT~\cite{anderson2014netkat}, a sound and complete network programming language, and KAT+B!~\cite{GKM14a}, which adds mutable boolean variables to a Kleene algebra.
 These theories provide algebraic decision procedures useful for determining when two terminating programs are equivalent.
 However, many useful programs, like user interfaces or servers, do not terminate but rather behave like automata.
-A coalgebraic decision procedure allows reasoning about these ``infinite'' programs.
+A coalgebraic decision procedure allows reasoning about these ``endless'' programs.
 
-When we began, Dexter and collaborators had already developed coalgebraic procedures for KAT (Kleene Algebra with Tests) and NetKAT~\cite{foster2014coalgebraic}, so we focused on KAT+B!.
+When we began, Dexter and his collaborators had already developed coalgebraic procedures for KAT (Kleene Algebra with Tests) and NetKAT~\cite{foster2014coalgebraic}, so we focused on KAT+B!.
 Together, Ulrik and I studied the past work on Kleene algebras and on coalgebras~\textemdash~along the way learning some category theory and automata theory~\textemdash~and determined that we could construct the decision procedure for KAT+B! following very similar reasoning as had been done for KAT and NetKAT.
 This prompted a further investigation into a unified system for finding the coalgebraic decision procedure of any Kleene algebra with additional equations, but unfortunately this remains work-in-progress.
+What I gained from this experience was a finer appreciation of the problems being solved in theoretical programming languages research, and an opportunity to collaborate with a student who lives outside the United States.
 
-
-%% As a final point of note, I chose Northeastern because I felt a strong research fit with both Matthias and Amal.
-%% But funding is an issue.
 \vfill
 \renewcommand{\section}[2]{}
 \begin{multicols}{2}
