@@ -5,137 +5,64 @@
 
 \newcommand{\mono}[1]{\textbf{\texttt{#1}}}
 
-%% TODO merge header and name
-\renewcommand\maketitle{
-{\flushleft{\textsf{%
-Ben Greenman
-\hfill
-DRAFT: NSF Research Proposal
-}}\\
-\hrulefill}
-}
+\newcommand{\hdr}[2]{\vspace{-0.4cm}{\flushleft{\hrulefill\\\textbf{#1}\hfill{#2}\\\vspace{-0.2cm}\hrulefill}}\vspace{0.1cm}}
 \begin{document}
-\maketitle
 
-%% %% this is pretty, but really it's just trash
-%% Research in computer science\footnote{or for that matter, mathematics, biology, philosophy} seeks to build increasingly more sophisticated models for understanding and reasoning about real-world phenomena.
-%% Successful models both take meaning from and influence the outside world.
-%% In the subfield of programming languages, this effort has been extremely successful\textemdash we can now prove complex safety and behavioral properties about a program before running it, and abstractions like modules and objects give industry practitioners crucial tools to build intricate systems\textemdash but we are still missing the ``holy grail'' of full-spectrum programming languages.
+\hdr{DRAFT: NSF Research Proposal}{Ben Greenman}
 
-%% A full-spectrum programming language is (in theory) a language for working with and expressing relationships between arbitrary programming languages.
-%% %% We see hints of this in tools like Ott or Lem
-%% %% It is a language of languages, if you will, similar to the set of all sets or category of categories
-%% On one end, a full-spectrum language provides a launchpad for any application.
-%% Developers may begin coding the language they are the most familiar with or effective in, then as the scope or goals of the project changes, they can easily migrate to a more suitable source language without incurring a huge engineering cost.
-%% %% See for example Twitter's growing pains
-%% Conversely, using a full-spectrum language as the target for compilation gives the ideal setting for reasoning about compiler correctness and proving behavioral properties.
-%% No matter where a compiled program component originated, we can make guarantees about how it will interoperate with the code it is linked with.
-%% If we as a research community care about helping creators to build scalable programs or about showing that the source-level guarantees we have worked to prove actually hold when the program is compiled, linked, and run, we need full-spectrum languages.
+Developers creating a software project have a wide range of languages to choose from.
+They pick the one best-suited to meet their immediate needs, but must often incorporate other languages as the project grows.
+For example, Facebook began with a PHP script, but the now multi-billion dollar website currently includes code from at least 6 other languages, including C and Erlang.\footnote{http://www.quora.com/What-programming-languages-are-used-at-Facebook}
+%% Similarly, Twitter has recently migrated its entire codebase from Ruby scripts to a mix of Scala and Java.\footnote{http://readwrite.com/2011/07/06/twitter-java-scala}
+Conversely, Jane Street Capital was mostly Visual Basic and Excel before one aspiring employee began rewriting the core trading software in OCaml.\footnote{http://www.pcworld.idg.com.au/article/547567/won\_t\_believe\_what\_programming\_language\_wall\_street\_firm\_uses/}
+%% Unfortunately, the interplay between these languages is completely unverified.
+%% There is no formal notion of correctness between, say, OCaml code and C code.
+This phenomena is widespread, and it arises because software projects encompass a spectrum of \emph{changing} goals but modern languages only succeed at a few specific tasks.
+%% and this spectrum is more than any modern language can address.
+%% Unfortunately, there are few tools available for reasoning about such multi-language systems.
 
-%% In fact, a full-spectrum language has meaning in terms of proofs, performance, and people: the biggest three outcomes we care about.
-%% - People: uniform source
-%% - Proofs: uniform target
-%% - Performance: uniform backend
+My goal is to build a \emph{full spectrum programming language} that can accomodate a range of tasks, from high-assurance kernel software to dynamic scripts.
+More importantly, this language will guarantee the interaction of its component languages.
+Type system invariants will be preserved despite interaction with untyped modules, and scripts that grow into full-fledged programs will be straightforward to port into typed or even dependently typed code.
 
-%% \subsubsection{About Me}
-%% \subsubsection{What}
-%% \vspace{-0.2cm}
-%% \subsubsection*{Research Problem}
-Programming languages are aptly characterized as tools; each has a few strengths and a few weaknesses, but as a whole the toolbox of modern-day languages helps developers realize a wide spectrum of ideas.
-From low-level C to well typed ML to proof-checked Coq, there is a language suited for nearly every idea a person could dream of (and a research effort addressing those yet to be!).
-%% 'live in isolation' -> are easy to contain | 
-However, both ideas and software projects tend to grow and the reality of this ``language for every task'' mantra is that programs meeting a spectrum of needs must be spread over a spectrum of languages.
-The Facebook website, for example, is powered by a mix of PHP, JavaScript, C, C++, Java, Python, and Erlang.\footnote{http://www.quora.com/What-programming-languages-are-used-at-Facebook}
+\hdr{Research Proposal}{}
 
-Fragmentation of this sort is unfortunately the status quo; as a research community, we currently know very little about safe and effective language interoperability.
-But I envision a future where full-spectrum ideas and applications are served by correspondingly full-spectrum languages; tools that not only support the range of styles a developer needs but also mediate the interactions between them.
-%% Should a programmer write a small, dynamically-typed script that links to a dependently typed package she found on GitHub, this interaction should both be immediate possible from the developer's perspective and proven sound by the encompassing language.
+This is not a strictly novel idea; in fact, the research community has been verifying small multi-language systems for the past decade.
+Pioneering work by Matthews and Findler studied a combined language of Scheme and ML~\cite{matthews2007operational}, and more recently Osera et.~al examined the interaction of simple and dependent types~\cite{osera}.
+In addition, other projects have explored topics like certified foreign-function interfaces~\cite{furr2005checking} and safe interoperability of untyped code with Java~\cite{gray2005fine}.
+The time has come for a full-spectrum language that unifies these efforts.
 
-More formally, a full-spectrum language is a programming language whose source files are compiled subject to a variety of correctness or well-formedness criterion depending on the syntax used within each source file.
-One can imagine a language of languages\textemdash for example, with one syntax for untyped programs and another syntax for typed programs\textemdash but a full-spectrum language must be more than the sum of its components.
-It must additionally provide boundaries and translations between each of these component languages.
-Any type soundness guarantees proved in one component language would need to hold even when typed modules interact with untyped modules, and any formally-verified proofs must be preserved despite interaction with code that has not been admitted by a mechanized theorem prover.
-These are exactly the properties one would need to gradually migrate from untyped to typed code, and to ensure that adding a new script to a project does not affect its overall correctness.
+My proposal is to study the interaction between dependently-typed and (un)typed code, building on the gradual typing work done by Sam Tobin-Hochstadt while at Northeastern University~\cite{tobin2010typed}.
+Sam gave a full proof-of-concept for safe transitions between untyped and simply-typed modules.
+I plan to extend his system with a dependently-typed language that permits all the formal verification of Coq or Agda, but moreover ensures safe operation with unverified languages similar to ML or C.
+The feedback loop for realizing this plan will be to design a theoretical framework~\textemdash~initially I plan to use contracts to encode invariants like Coq proofs or parametricity requirements~\textemdash~and then implement it within the Racket ecosystem, which offers an extensible core language and diverse libraries to translate.
 
-\vspace{-0.2cm}
-\subsubsection*{General Approach}
-There are glimpses of full-spectrum languages in foreign function interfaces~\cite{furr2005checking}, in gradually typed languages such as Grace\footnote{http://gracelang.org/} and Dart~\footnote{https://www.dartlang.org/}; and in research efforts that consider the interoperation of two or more languages~\cite{osera, gray2005fine, anand2014towards, perconti2014verifying}.
-Hence although there has not yet been a formal effort towards building a full-spectrum language, I have a research plan that builds on prior work.
+My journey will be guided by the experienced faculty at Northeastern and around Boston.
+On campus, I have Matthias Felleisen, Amal Ahmed, and Jan Vitek: masters in their respective areas of design, theory, and practicality.
+Across the river are Harvard's Greg Morrisett, who has been compiling types for over a decade, and MIT's Adam Chlipala, the US expert on programming with dependent types.
+My training as an undergraduate in Industrial and Labor relations prepared me to bridge ideaologies and boundaries, and answering the question of full spectrum languages will require putting these lessons to use.
 
-The first step is to build a core calculus of interoperability.
-At present I am working on combining Matthews and Findler's calculus of Scheme and ML~\cite{matthews2007operational} with Osera et.~al's framework of simply-typed and dependently-typed lambda calculii~\cite{osera}.
-The crucial part of this calculus will be the boundaries separating component languages; ideally, these boundaries will be verified by a static type system, but for now I am leveraging the dynamic power of contracts to describe boundaries.
-This implies three directions for future research.
-For one, we need more advanced type systems that can match the expressiveness of contracts.
-Secondly, contracts have a large runtime cost, so we need to implement or extend the theories of Greenberg~\cite{greenberg2015space} and Herman et.~al~\cite{herman2010space} regarding space-efficient contracts.
-Perhaps the best solution is to balance contracts and types in the vein of hybrid type-checking~\cite{knowles}; thus contracts, via their adaptive and infectious nature,\footnote{Findler's ICFP 2014 keynote showed that in the past 3 years over 3000 contracts have steadily appeared in the Racket ecosystem.} will demonstrate which inefficiencies type systems research should focus on solving.
-Finally, there is potential for automated or tool-assisted migration from contracted modules to typed modules.
-Studying the patterns of contract use in the Racket codebase, where over 80\% of contracts only recover simple types~\cite{greenberg2013manifest}, should provide concrete insights.
+\newpage
 
-%% TODO don't like te intro
-Second, I will build the language described by this model and test its efficacy.
-My proposed venue for prototyping is the Racket language, which is developed largely at Northeastern University.
-%% TODO userbase numbers
-Racket has the advantages of a strong infrastructure, a sizeable userbase, and visionary developers.
-Moreover, it already supports transitions from untyped Racket to the sister language Typed Racket, so it is the ideal language for experimenting with a broader spectrum of ideas.
+\hdr{Broader Impacts}{}
 
-Lastly, a full-spectrum language must be capable of accomodating new paradigms as they appear.
-To achieve this goal, I plan on extending the spectrum of the core calculus with a few select components and using the experience to build a generalized algorithm for increasing the spectrum.
-This algorithm could simply be a Coq script with well-documented holes, but it must be understandable such that a proprietary team is able to extend their codebase with an in-house language and verify the interactions of this new language with existing code.
-Whether or not my prototype grows into a widely-used language, it will be an informative microcosm of our multi-language world.
+The two motivating examples listed in my introduction are interesting, but relatively benign.
+Much more compelling reasons for building a full spectrum language are the Swedish Pension system, which consists of 320,000 lines of Perl,\footnote{https://www.cs.purdue.edu/homes/jv/talks/dls09.pdf} and the HACMS project, which seeks to provide a simple interface for programming Unmanned Autonomous Vehicles (UAVs).\footnote{http://www.darpa.mil/Our\_Work/I2O/Programs/High-Assurance\_Cyber\_Military\_Systems\_(HACMS).aspx}
 
-\vspace{-0.2cm}
-\subsubsection*{Broader Impacts}
+The pension system grew from a script that saved the country when a contractor failed to deliver, but now represents the absolute worst in legacy code.
+Sweden desperately needs a plan to certify individual modules and protect its retirees because a brute-force rewrite is not an option.
+On the other hand, the High-Assurance Cyber Military Systems (HACMS) project is seeking an answer to the opposite problem.
+To create a simple API to their highly-sensitive machines, they essentially need a method of linking scripts to dependently typed programs.
+These are precisely the issues my research will investigate.
 
-A full-spectrum language is more than a flexible palette for engineers or a much-needed research experiment.
-It also provides the ideal environment for learning a new language.
-Beginning students may start learning in a small, dynamically typed language with only core language constructs.
-As they grow more proficient, students can slowly learn more advanced features.
-Unlike today, where exposing students to new ideas and paradigms often entails teaching them a brand new language, using a full-spectrum language keeps the focus on the programming concepts.
+That said, a full spectrum language is useful for more than large-scale software projects.
+It is also the ideal language for teaching programming concepts to novices~\textemdash~either young students or adults seeking to learn a highly competitive skill~\textemdash~because it lets a teacher introduce new concepts without needing to teach a new language.
+As a student of Matthias Felleisen, I will be able to introduce my language to high-school and college students learning to code via the ProgramByDesign initiative, and also leverage it as a tool to improve middle-school mathematics education through the Bootstrap program.
 
-This approach has already been proven successful by the Bootstrap afterschool program, which teaches functional programming to underprivileged children in Boston, Harlem, and Chicago.\footnote{http://www.bootstrapworld.org/}
-Bootstrap uses a series of educational languages precisely because its founders realized that ``no off-the-shelf programming language is suitable for novices''~\cite{felleisen2010teachscheme}.
-Students gradually transition from a beginning language with only functions and conditionals to an ``advanced'' ML-like language.
-However, the spectrum ends here, at ML.
-
-As a graduate student, I hope to expand the languages taught in the bootstrap program to include type systems, object-oriented programming, scientific computing, and web design.
-Furthermore, I want to expand the target audience of Bootstrap to include adults seeking to enter the tech industry.
-One way to achieve this would be an afterschool program for students and their parents, so that stay-at-home adults can learn skills useful in today's economy.
-Another option would be a completely new program for adults only, taught in the evenings or given as an online course.
-We could also host outreach programs through prisons or the military, thus helping ease those adults' transition back into their communities.
-At any rate, tech companies are desperately seeking talent\footnote{http://www.nbcnews.com/news/us-news/perk-facebook-apple-now-pay-women-freeze-eggs-n225011} and a full-spectrum language will provide the necessary groundwork for an educational program that quickly teaches the skills these companies will pay for.
-%% TODO should likely pick a single angle and run.
-
-%% This is a large agenda, but there are a similarly many incentives for building a full-spectrum language.
-%% Foremost among these is the potential to help people currently using or hoping to learn a programming language.
-%% One of the most frustrating aspects of programming is that the ideas one may express are limited by the language one works in.
-%% Trying to write a UI in Agda is a bit like %attempting to write literature in the fictional language Newspeak of Orwell's \emph{1984}~\cite{orwell2009nineteen} or
-%% using a spoon to paint a house.
-%% In contrast, a full-spectrum language will allow developers to easily switch between languages well-suited for various tasks.
-%% This impact will be strongly felt by teams working on large software projects: instead of being ingrained in one language, engineers may port one module into a more expressive component language without changing any other existing code.
-%% Furthermore, the interaction between these components will be verified by the language.
-%% This means the end of loosely-coupled multi-language projects, and it also defends against malware that might have leveraged some unchecked boundary in the code.
-
-%% In addition to its benefits to language users, a full-spectrum language will help advance programming languages research.
-%% There are a variety of efforts studying classes of program transformations.
-%% At the moment, these efforts are crippled because the space of real-world programming languages is largely unstructured: links from one language to another are few.
-%% By building a microcosm of the whole world in one full-spectrum language, we provide a baseline for other research.
-%% Work on fully abstract compilers will be able to draw from the techniques the closed-world, full-spectrum language uses to ensure correctness.
-%% Bidirectional transformations may also be influenced by the sort of connections we build.
-
-%% Last but not least, the specialization and separation provided by a full-spectrum language will improve overall performance.
-%% The compiler will be able to optimize more aggressively~\cite{leroy1994manifest} and of course the user will be writing code in the style best suited for the task.
-
-%% This vision to build a full-spectrum language is really a no-brainer. % long overdue, etc etc
-%% The need for larger and more stable software has created an immediate need for a full-spectrum language and research efforts into type systems and contract systems have given researchers the tools and vocabulary to begin making a serious effort.
-%% The biggest open question (in my mind) if I have the imagination and perserverance to achieve it. % LOLOLOL
-
-\vspace{-0.2cm}
-\subsubsection*{Conclusion}
-Making discoveries and building inventions are just one part of a scientist's job.
-Equally important, though not as glamorous, are the challenges of testing these new inventions, observing the world around us, and building connections between laboratory creations and real-world phenomena.
-I hope that my proposal serves as a convincing argument that I will soon make progress towards building much-needed connections, and I hope that my future actions will lead to beautiful and useful results.
-
+Bootstrap is an afterschool program developed by Emmanuel Schanzer, a Mathematics Education Ph.D student at Harvard, that teaches algebra to children in underpriviledged neighborhoods throughout New York, Massachusetts, Chicago, Maryland, and Florida.\footnote{http://www.bootstrapworld.org}
+The cirriculum now uses a simple functional language to teach, but this raises issues because mathematical functions like factorial are undefined on particular, well-typed inputs.
+By working with Bootstrap I hope to improve the quality of learning for a younger generation while simultaneously getting feedback on a tool, the full spectrum language, that has applications in every area from web design to UAVs to retirement management.
+%% It's certainly crucial to my retirement plan!
 
 \renewcommand{\section}[2]{}
 \begin{multicols}{2}
