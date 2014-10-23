@@ -4,26 +4,24 @@
 \usepackage{multicol}
 \usepackage{hyperref}
 
-\newcommand{\mono}[1]{\textbf{\texttt{#1}}}
-
 \newcommand{\hdr}[2]{\vspace{-0.4cm}{\flushleft{\hrulefill\\\textbf{#1}\hfill{#2}\\\vspace{-0.2cm}\hrulefill}}\vspace{0.1cm}}
 \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Present an original research topic that you would like to pursue in graduate school.
+%% Describe the research idea, your general approach, as well as any unique resources that may be needed for accomplishing the research goal (i.e., access to national facilities or collections, collaborations, overseas work, etc.)
+%% You may choose to include important literature citations.
+%% Address the potential of the research to advance knowledge and understanding within science as well as the potential for broader impacts on society.
+%% The research discussed must be in a field listed in the Solicitation (Section X, Fields of Study).
+%% Page Limit - 2 pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \hdr{DRAFT: NSF Research Proposal}{Ben Greenman}
 
-%% TODO new first sentence
-%% Developers creating a software project have a wide range of languages to choose from.
 The first step in designing software is to pick the language best suited for the task.
 However, a single programming language is rarely sufficient to meet the needs of a growing project.
-%% They pick the one best-suited to meet their immediate needs, but must often incorporate other languages as the project grows.
 For example, Facebook began with a PHP script, but the now multi-billion dollar website currently includes code from at least 6 other languages, including C and Erlang.\footnote{http://www.quora.com/What-programming-languages-are-used-at-Facebook}
-%% Similarly, Twitter has recently migrated its entire codebase from Ruby scripts to a mix of Scala and Java.\footnote{http://readwrite.com/2011/07/06/twitter-java-scala}
 Conversely, Jane Street Capital was mostly Visual Basic and Excel before one aspiring employee began rewriting the core trading software in OCaml.\footnote{http://www.pcworld.idg.com.au/article/547567/won\_t\_believe\_what\_programming\_language\_wall\_street\_firm\_uses/}
-%% Unfortunately, the interplay between these languages is completely unverified.
-%% There is no formal notion of correctness between, say, OCaml code and C code.
 This phenomena is widespread, and it arises because software projects encompass a spectrum of \emph{changing} goals but modern languages are designed to solve only one specific class of problems.
-%% and this spectrum is more than any modern language can address.
-%% Unfortunately, there are few tools available for reasoning about such multi-language systems.
 
 My goal is to build a \emph{full spectrum programming language} that can accomodate a range of tasks, from high-assurance kernel software to dynamic scripts.
 More importantly, this language will guarantee the interaction of its component languages.
