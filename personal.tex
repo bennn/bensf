@@ -3,8 +3,7 @@
 \usepackage[in]{fullpage}
 \usepackage{multicol}
 \usepackage{hyperref}
-
-\newcommand{\mono}[1]{\textbf{\texttt{#1}}}
+\usepackage{soul}
 
 \newcommand{\hdr}[2]{\vspace{-0.4cm}{\flushleft{\hrulefill\\\textbf{#1}\hfill{#2}\\\vspace{-0.2cm}\hrulefill}}\vspace{0.1cm}}
 
@@ -28,70 +27,72 @@
 \hdr{DRAFT: NSF Personal Statement}{Ben Greenman}
 
 As I was growing up, my parents imposed a strict discipline on my life.
-Looking back, I can see they wanted the best for me~\textemdash~both had associate degrees, and hoped I would earn a bachelor's~\textemdash~but by the time I entered high school I had resolved to move out when I turned 18.
+Looking back, I can see they wanted the best for me\textemdash both had associate degrees, and hoped I would earn a bachelor's\textemdash but by the time I entered high school I had resolved to move out when I turned 18.
 To support myself, I worked a variety of evening jobs: first at a local Taqueria (where I eventually became a kitchen supervisor) and later on as a janitor.
 It was during one of these late nights at the restaurant that one customer, a lawyer, told me about his experiences as a student at Cornell University.
 That night I decided Cornell was my dream school, and applied to the Industrial and Labor Relations program the following year.
 
 To my delight, Cornell accepted me as a guaranteed transfer\footnote{http://cornellsun.com/blog/2013/09/30/guest-room-inside-cornells-guarantee-transfer-system/} and I looked forward to arriving as a sophomore.
 Until then, I spent a terrific freshman year at Hudson Valley Community College, taking a few courses to satisfy Cornell's requirements and also two semesters of calculus and physics.
-I loved the welcoming, collegial environment at HVCC~\textemdash~my teachers were encouraging and helpful, and my fellow students were friendly and cared about learning.
+I loved the welcoming, collegial environment at HVCC\textemdash my teachers were encouraging and helpful, and my fellow students were friendly and cared about learning.
 The experience made me all the more excited about going to Cornell.
 
-But when I finally arrived in Ithaca, I experienced a culture shock.
+When I finally arrived in Ithaca, I experienced a culture shock.
 The only friendly students I met were those trying to recruit me into student government organizations, and teachers cared more about publishing articles than giving quality lectures and assignments.
 It was a sad time.
-My grades were poor, I felt disillusioned, and my evening work as a janitor left me drained.
+I felt disengaged, my grades dropped, and my evening work as a janitor left me drained.
 Thankfully, my search for affordable housing had led me to an apartment of fun, upperclassmen engineers.\footnote{http://screwyoursnark.com/}
 They encouraged me to try a minor in computer science.
 Following their advice was one of the best decision I have ever made.
 
-After finishing my second course in the CS department, I left my janitor job to TA functional programming.
+At the start of my second year at Cornell, I took the introductory course in functional programming and immediately fell in love with the concise and elegant paradigm.
+Functional programming became my hobby, and I ended the semester by writing an AI that won the class-wide tournament and earned me a position as a TA for the course.
+Good-bye custodial work!
+I had found my passion.
 The following summer, I got a job at a New York City startup consisting of two entrepreneurs, one real estate broker, and one programmer.
 For the rest of my undergraduate career, I worked part-time both as a TA and as a software engineer for this company.
 Though I was curious about research, I felt ashamed of my non-standard background and figured industry would be a better fit.
-Then just before I graduated, Cornell hired Ross Tate and I decided to try approaching him.
-The rest is history.
+Then, just before I graduated, Cornell hired Ross Tate and I decided to try approaching him.
 
 \hdr{Decidable Subtyping for Object-Oriented Langauges}{Summer~\textendash~Fall 2013}
 
-Professor Ross Tate leads a double life.
-He is also the type systems advisor for teams at Red Hat and JetBrains working to create object-oriented languages designed for managing large software projects.
-These companies have three main priorities: they want code to be self-documenting, highly reusable, and backed with strong compile-time guarantees.
-However, the infrastructure for reusable code sometimes caused the compiler to loop infinitely on useful programs.
-In particular, a simple function for comparing two binary trees would cause an out-of-memory error before the code was even run~\textemdash~the compiler could not understand certain recursive definitions made by programmers.
+Ross Tate leads a double life.
+He is both a professor and the type systems advisor for teams at Red Hat and JetBrains working to create object-oriented languages for managing large software projects.
+These companies have three main priorities; they want code to be: self-documenting, highly reusable, and backed with strong compile-time guarantees.
+However, the features empowering reusable code in mainstream languages sometimes cause the compiler to diverge.
+For example, a simple type-safe function for comparing two binary trees will cause the Eclipse and Visual Studio compilers to crash with out-of-memory errors.
 
-Curious to learn if similar companies had encountered this issue, I implemented a source code analyzer to detect cycles in the inheritance hierarchy of a Java project.\footnote{https://github.com/bennn/inheritance-cycles}
-Next I modified the \mono{javac} compiler to log a warning whenever a class/interfaces used in a cycle appeared as a field, type argument, method parameter, or return type.\footnote{https://github.com/bennn/javab}
+Curious to learn if similar companies had encountered this issue, I implemented a source code analyzer to detect cycles in the inheritance hierarchy of Java projects.\footnote{https://github.com/bennn/inheritance-cycles}
+Next I modified the \texttt{javac} compiler to log a warning whenever a class/interfaces used in a cycle appeared as a field, type argument, method parameter, or return type.\footnote{https://github.com/bennn/javab}
 After running this analysis on over 13 million lines of code taken from 60 open-source Java projects, Ross and I concluded that classes/interfaces used to create inheritance loops are used \emph{only} to make such loops.
-Thus, Ross, myself, and his newly-acquired graduate student Fabian M\"uhlb\"ock spent the Fall creating a practical compile-time algorithm that resolved the issue~\cite{shapes}.
-We presented our findings in Edinburgh this past summer, and there I was very proud to have thoughtfully solved a problem motivated by colleagues in industry.
+Thus, Ross, myself, and Ph.D student Fabian M\"uhlb\"ock spent the Fall creating a practical type-checking algorithm that resolved the issue~\cite{shapes}.
+We presented our findings at PLDI '14 in Edinburgh this past summer.
 
 \hdr{Conditional Inheritance}{Spring~\textendash~Summer 2014}
 
 The following Spring, I continued to study object-oriented type systems.
-With the issue of infinite loops solved, Ross and I hoped to build a mechanism for code reuse called conditional inheritance.
-For example, conditional inheritance would let a programmer declare that a list is clonable if there is a procedure for making copies of all its elements.
+With the issue of infinite loops solved, Ross and I hoped to build a mechanism for code reuse called \emph{conditional inheritance}.
+For example, conditional inheritance empowers a programmer to declare that a list is clonable if there is a procedure for making copies of all its elements.
 
 At the time, we thought this extension would be straightforward.
-Indeed, for a language like Java, where the range of a variable is specified at each use-site, such conditions are decidable in our system.
+Indeed, for a language like Java, where the bounds of a variable are specified at each use-site, such conditions are decidable in our system.
 But the story for languages like C++, where a variable's definition is the only guide for its use, is much more complicated.
-Week after week, I presented new designs to Ross only to return to the drawing board when one of us realized a corner case it missed.
-After 4 months of iteration, we admitted that any fully backwards-compatible design would be too restrictive to be practically useful.
+Week after week, I presented new designs to Ross only to return to the drawing board when one of us discovered an issue.
+After four months of iteration, we admitted that any fully backwards-compatible design would be too restrictive to be practically useful.
 In light of this, I am now building a language and type-checker that allows conditional inheritance, but only on classes and interfaces that are uniquely determined by their parameters.
-The goal is to test whether this more restricted strategy can still express necessary utilities like the Java collections library.
+The goal is to test whether this more restricted strategy can still articulate invariants in the Java collections library.
 
 \hdr{Kleene Coalgebras}{Spring 2014}
 
-Also that Spring, I worked with Professor Dexter Kozen and an exchange student from the University of Copenhagen, Ulrik Rassmussen, on coalgebraic decision procedures.
+Also that Spring, I worked with Professor Dexter Kozen and  Ulrik Rassmussen, an exchange student from the University of Copenhagen, on coalgebraic decision procedures.
 Much of Dexter's research is on practical applications of Kleene algebra, the language of iteration.
-Two recent examples are NetKAT~\cite{anderson2014netkat}, a sound and complete network programming language, and KAT+B!~\cite{GKM14a}, which reasons about mutable boolean variables.
+Two recent examples are NetKAT~\cite{anderson2014netkat}, a sound and complete network programming language, and KAT+B!~\cite{GKM14a}, which is a logic for reasoning about mutable boolean variables.
 These theories provide \emph{algebraic} decision procedures useful for determining when two terminating programs are equivalent.
 However, many useful programs, like user interfaces or servers, do not terminate but rather behave like automata.
 A coalgebraic decision procedure allows reasoning about these ``endless'' programs.
 
 When we began, Dexter and his collaborators had already developed coalgebraic procedures for KAT (Kleene Algebra with Tests) and NetKAT~\cite{foster2014coalgebraic}, so we focused on KAT+B!.
-Together, Ulrik and I studied the past work on Kleene algebras and on coalgebras~\textemdash~along the way teaching each other some category theory and automata theory~\textemdash~and determined that we could construct the decision procedure for KAT+B! following very similar reasoning as had been done for KAT and NetKAT.
+Together, Ulrik and I studied past work on Kleene algebras and on coalgebras and determined that we could construct the decision procedure for KAT+B! following very similar reasoning as had been done for KAT and NetKAT.
 This prompted a further investigation into a unified system for finding the coalgebraic decision procedure of any Kleene algebra with additional equations, but this remains work-in-progress.
 What I gained from this experience was a finer appreciation of theoretical techniques in programming langauges and of teamwork.
 Neither myself nor Ulrik would have accomplished much if we had struggled on the problems alone.
@@ -99,20 +100,18 @@ Neither myself nor Ulrik would have accomplished much if we had struggled on the
 \hdr{Broader Impacts}{}
 
 Teaching has been a part of my life for nearly a decade.
-For three years in Albany, I supervised elementary school students as a volunteer at my church's vacation bible school.
+For three years in Albany, I taught elementary school students at my church's vacation bible school.
 While a student at Hudson Valley, I volunteered at the local Boys and Girls club.
 During my first summer in Ithaca, I created and taught a summer camp on LEGO Mindstorms robots.
 
-On the other hand, learning computer science has been a thrill for me, so much that I have trouble containing my excitement when thinking about beautiful topics like type inference, induction-recursion, and hashing.
-Being able to combine these two loves: teaching and functional programming, has been a dream come true.\footnote{As one student wrote on their course evaluations: ``I have to imagine that if functional programming were a person, [Ben] would want to marry it. It's adorable.''}
-Indeed, the 5 semesters I spent teaching functional programming made my Cornell experience wonderful.
+At Cornell, I was isolated and unsuccessful until I began teaching.
+Joining the course staff changed my life in two ways: it connected me with other students and helped me learn effectively.
+A glance at my transcript shows that I nearly failed a course in abstract algebra my second year.
+But after learning functional programming well enough to teach it, I revisited the material and found algebra so enthralling that I sought out Professor Kozen for a research project.
 
-With this in mind, a big reason why I chose Northeastern University for graduate studies was the potential I saw for educational outreach.
-Northeastern is home to the ProgramByDesign initiative, which for the past 10 years (20, if we go back to when PBD was known as TeachScheme!) has taught high school educators how to effectively teach algebra through functional programming.
-This mission is the perfect fit for me.
-As my academic history shows, I had an awful time trying to understand the seemingly arbitrary rules of mathematics until I learned functional programming.
-At that point, everything ``clicked'' and I was able to become the person I am today.
-Having gone through this experience puts me in a unique position to help others reach their own potential, and I am eagerly seeking opportunities to help with an upcoming ProgramByDesign workshop.
+For this reason, I am excited to join Matthias Felleisen's research group because he has created and run outreach projects teaching algebra through functional programming for 20 years.
+The modern incarnation of this vision is the Bootstrap program,\footnote{http://www.bootstrapworld.org} which brings middle school students in dilapidated neighborhoods (Dorchester, Harlem, East Palo Alto, and many others) up to speed in pre-algebra and geometry.
+Already I have talked to Dr. Felleisen about volunteering with Bootstrap, and I fully expect that some of my research will influence this program.
 
 \vfill
 \renewcommand{\section}[2]{}
