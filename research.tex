@@ -37,7 +37,7 @@ The time has come for a full-spectrum language that unifies these efforts.
 My proposal is to study the interaction between dependently-typed and (un)typed code, building on the gradual typing work done by Sam Tobin-Hochstadt while at Northeastern University~\cite{tobin2010typed}.
 Sam gave a full proof-of-concept for safe transitions between untyped and simply-typed modules.
 I plan to extend his system with a dependently-typed language that permits all the formal verification of Coq or Agda, but moreover ensures safe operation with unverified languages similar to ML or C.
-The feedback loop for realizing this plan will be to design a theoretical framework\textemdash initially I plan to use contracts to encode invariants like Coq proofs or parametricity requirements\textemdash and then implement it within the Racket ecosystem, which offers an extensible core language and diverse libraries to translate.
+The feedback loop for realizing this plan will be to design a theoretical framework\textemdash initially I plan to use contracts to enforce type system invariants\textemdash and then implement it within the Racket ecosystem, which offers an extensible core language for development and diverse libraries to translate.
 
 My progress will be directed by the group of experienced faculty at Northeastern University.
 Matthias Felleisen has spent the past seven years working on Typed Racket.
