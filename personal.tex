@@ -50,8 +50,8 @@ Functional programming became my hobby, and I ended the semester by writing an A
 Good-bye custodial work!
 I had found my passion.
 The following summer, I got a job at a New York City startup consisting of two entrepreneurs, one real estate broker, and one programmer.
-For the rest of my undergraduate career, I worked part-time both as a TA and as a software engineer for this company.
-Though I was curious about research, I felt ashamed of my non-standard background and figured industry would be a better fit.
+For the rest of my undergraduate career, I worked part-time both as a TA and as a developer for this company.
+Though I was curious about research, I felt ashamed of my non-standard background and had planned to just continue as a software engineer.
 Then, just before I graduated, Cornell hired Ross Tate and I decided to try approaching him.
 
 \hdr{Decidable Subtyping for Object-Oriented Langauges}{Summer~\textendash~Fall 2013}
@@ -65,7 +65,7 @@ For example, a simple type-safe function for comparing two binary trees will cau
 Curious to learn if similar companies had encountered this issue, I implemented a source code analyzer to detect cycles in the inheritance hierarchy of Java projects.\footnote{https://github.com/bennn/inheritance-cycles}
 Next I modified the \texttt{javac} compiler to log a warning whenever a class/interfaces used in a cycle appeared as a field, type argument, method parameter, or return type.\footnote{https://github.com/bennn/javab}
 After running this analysis on over 13 million lines of code taken from 60 open-source Java projects, Ross and I concluded that classes/interfaces used to create inheritance loops are used \emph{only} to make such loops.
-Thus, Ross, myself, and Ph.D student Fabian M\"uhlb\"ock spent the Fall creating a practical type-checking algorithm that will never hit the out-of-memory errors~\cite{shapes}.
+Thus, Ross, myself, and Ph.D student Fabian M\"uhlb\"ock spent the Fall creating a practical type-checking algorithm that avoids these out-of-memory errors~\cite{shapes}.
 We presented our findings at PLDI '14 in Edinburgh this past summer.
 
 \hdr{Conditional Inheritance}{Spring~\textendash~Summer 2014}
