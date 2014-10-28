@@ -22,10 +22,10 @@
 The first step in designing software is to pick the right language for the task.
 A single programming language, however, is rarely sufficient to meet the needs of a growing project.
 For example, Facebook began with a PHP script but has recently developed their own language, Hack~\cite{hacklang}, to gradually augment PHP code with static type checking.
-Additionally, Jane Street Capital primarily used Visual Basic until one employee rewrote the core trading software in the more secure OCaml language, and Bank of America maintains a trusted layer of COBOL underneath its Java modules.
-This phenomena of combining languages is widespread, and it arises because software projects encompass a spectrum of \emph{changing} goals but each modern language excels at only one specific class of problems.
+Similarly, Jane Street Capital primarily used Visual Basic until one employee gradually rewrote the core trading software in the safer OCaml language, and Bank of America maintains a trusted layer of COBOL underneath its Java modules.
+This phenomena of combining languages is widespread, and it arises because software projects encompass a spectrum of \emph{changing} goals.
 
-My goal is to build a \emph{full spectrum programming language} that can accomodate a range of tasks, from high-assurance kernel software to dynamic scripts.
+My goal is to build a \emph{full spectrum programming language} that accomodates degrees of safety ranging from high-assurance kernel software to untyped, dynamic scripts.
 More importantly, this language will guarantee the interaction of its component languages.
 Type system invariants will be preserved during interactions with untyped modules, and scripts that grow into full-fledged programs will be straightforward to port into typed or even dependently typed code.
 
@@ -38,14 +38,14 @@ The time has come for a full-spectrum language that unifies these efforts.
 
 My proposal is to study the interaction between dependently-typed and (un)typed code, building on the gradual typing work done by Sam Tobin-Hochstadt while at Northeastern University~\cite{tobin2010typed}.
 Tobin-Hochstadt gave a full proof-of-concept for safe transitions between untyped and simply-typed modules.
-I plan to extend his system with a certified, dependently-typed language that gives strong correctness guarantees and moreover ensures safe operation with dynamic or simply-typed languages.
-The feedback loop for realizing this design will include a theoretical framework\textemdash in particular, a constructive system with dynamically-checkable guarantees\textemdash and then implement it within the Racket ecosystem, which offers an extensible core language for development and diverse libraries to translate.
+I plan to create safe transitions between his languages and a certified, dependently-typed language of my own design.
+The feedback loop for realizing this design will include a theoretical framework\textemdash in particular, a constructive system with dynamically-checkable guarantees\textemdash and an implemention within the Racket ecosystem, which offers an extensible core language for development and diverse libraries to translate.
 My passion for the beautiful concepts in programming languages research and prior experience bringing these concepts to industry recommend me for this task.
 
-My progress will be directed by the experienced faculty at Northeastern University.
-Professor Felleisen has spent the past eight years working on Typed Racket with three of his students.
-Professor Ahmed has built the theoretical foundations for a multi-language compiler~\cite{perconti2014verifying}.
-Professor Vitek has been studied the performance of gradually-typed languages, bridging the gap between academia and industry.
+My studies will be directed by the experienced faculty at Northeastern.
+Matthias Felleisen has spent the past eight years working on Typed Racket with three of his students.
+Amal Ahmed has built the theoretical foundations for a multi-language compiler~\cite{perconti2014verifying}.
+Jan Vitek has been studied the performance of gradually-typed languages, bridging the gap between academia and industry.
 I am extremely lucky to have found such a diverse set of mentors at one institution.
 
 \newpage
@@ -56,10 +56,10 @@ The three motivating examples listed in my introduction are interesting, but rel
 Much more compelling reasons for building a full spectrum language are the Swedish Pension system, which consists of 320,000 lines of Perl~\cite{jantalk}, and the HACMS project, which seeks to provide a simple interface for programming Unmanned Autonomous Vehicles~\cite{hacms}.
 
 The pension system quickly grew from a tiny script when the government's hired IT firm failed to deliver a product.
-Sweden needs a plan to certify individual modules and protect its retirees because a complete rewrite of the system is infeasible.
+Sweden needs a plan to certify individual modules and protect its retirees because a complete rewrite of this system is infeasible.
 Conversely, the High-Assurance Cyber Military Systems (HACMS) project is seeking to de-classifying sections of a secure codebase.
 To create a simple API to their autonomous machines, they essentially need a method of linking scripts to dependently typed programs.
-These are precisely the issues my research will investigate.
+These are precisely the issues I seek to address with my research.
 
 Beyond its applications to real-world systems, a full-spectrum language is ideal for teaching programming concepts to novices because it offers smooth transitions from beginning to advanced topics.
 I hope to introduce my full spectrum language to the Bootstrap program, an afterschool initiative that teaches algebra to middle school students.
