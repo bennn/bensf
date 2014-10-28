@@ -76,7 +76,7 @@ For example, conditional inheritance empowers a programmer to declare that a lis
 
 At the time, we thought this extension would be straightforward.
 Indeed, for a language like Java, where the bounds of a variable are specified at each use-site, such conditions are decidable in our system.
-But the story for languages like C++, where a variable's definition is the only guide for its use, is much more complicated.
+But the story for languages like C\raisebox{0.5ex}{\tiny\textbf{++}}, where a variable's definition is the only guide for its use, is much more complicated.
 Week after week, I presented new designs to Ross only to return to the drawing board when one of us discovered a new corner-case.
 After four months of iteration, we admitted that any fully backwards-compatible design would be too restrictive to be practically useful.
 In light of this, I am now building a language and type-checker that allows conditional inheritance, but only on classes and interfaces that are uniquely determined by their parameters.
@@ -112,7 +112,7 @@ The connections between programming and mathematics are amazing.
 
 For this reason, I am excited to join Matthias Felleisen's research group because he has created and run outreach projects teaching algebra through functional programming for 20 years~\cite{felleisen2010teachscheme}.
 The modern incarnation of this vision is the Bootstrap program,\footnote{http://www.bootstrapworld.org} which brings middle school students in dilapidated neighborhoods (Dorchester, Harlem, East Palo Alto, and many others) up to speed in pre-algebra and geometry.
-Already I have talked to Dr. Felleisen about volunteering with Bootstrap, and I fully expect that some of my research will draw from and influence this program, just as his research has since 1995.
+Already I have plans to volunteer with Bootstrap, and I fully expect that some of my research will draw from and influence this program, just as Dr. Felleisen's research has since 1995.
 
 \vfill
 \renewcommand{\section}[2]{}
