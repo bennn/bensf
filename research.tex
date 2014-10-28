@@ -37,7 +37,7 @@ The time has come for a full-spectrum language that unifies these efforts.
 My proposal is to study the interaction between dependently-typed and (un)typed code, building on the gradual typing work done by Sam Tobin-Hochstadt while at Northeastern University~\cite{tobin2010typed}.
 Sam gave a full proof-of-concept for safe transitions between untyped and simply-typed modules.
 I plan to extend his system with a dependently-typed language that permits all the formal verification of Coq or Agda, but moreover ensures safe operation with unverified languages similar to ML or C.
-The feedback loop for realizing this plan will be to design a theoretical framework\textemdash initially I plan to use contracts to enforce type system invariants\textemdash and then implement it within the Racket ecosystem, which offers an extensible core language for development and diverse libraries to translate.
+The feedback loop for realizing this plan will be to design a theoretical framework\textemdash initially I plan to use dynamic boundaries to enforce type system invariants\textemdash and then implement it within the Racket ecosystem, which offers an extensible core language for development and diverse libraries to translate.
 
 My progress will be directed by the group of experienced faculty at Northeastern University.
 Matthias Felleisen has spent the past seven years working on Typed Racket.
@@ -52,18 +52,19 @@ I am extremely lucky to have found such diverse mentors at one institution.
 The two motivating examples listed in my introduction are interesting, but relatively benign.
 Much more compelling reasons for building a full spectrum language are the Swedish Pension system, which consists of 320,000 lines of Perl,\footnote{https://www.cs.purdue.edu/homes/jv/talks/dls09.pdf} and the HACMS project, which seeks to provide a simple interface for programming Unmanned Autonomous Vehicles (UAVs).\footnote{http://www.darpa.mil/Our\_Work/I2O/Programs/High-Assurance\_Cyber\_Military\_Systems\_(HACMS).aspx}
 
-The pension system grew from a script that saved the country when a contractor failed to deliver, but now represents a sad pile of legacy code.
+The pension system grew from a tiny script that saved the country when a contractor failed to deliver, but now represents a sad pile of legacy code.
 Sweden desperately needs a plan to certify individual modules and protect its retirees but a brute-force rewrite is not an option.
 Conversely, the High-Assurance Cyber Military Systems (HACMS) project is seeking a solution for certified de-classification.
 To create a simple API to their highly-sensitive machines, they essentially need a method of linking scripts to dependently typed programs.
 These are precisely the issues my research will investigate.
 
 Beyond its applications to real-world systems, a full-spectrum language is ideal for teaching programming concepts to novices because it offers smooth transitions from beginning to advanced topics.
-I hope to introduce my full spectrum language to the Bootstrap program, an afterschool initiative with strong ties to Northeastern that teaches algebra to middle school students.\footnote{http://www.bootstrapworld.org}
+I hope to introduce my full spectrum language to the Bootstrap program, an afterschool initiative that teaches algebra to middle school students.\footnote{http://www.bootstrapworld.org}
 Introducing dependent types in the Bootstrap program would allow a natural transition from algebra to logic and proofs.
 Dependent types allow extremely powerful reasoning about programs, enough for students to write lemmas and theorems they might find in a textbook.
 Being able to rewrite theorems as programs will help students better understand the ideas they see on the blackboard and improve their formal reasoning skills.
-Thus a full-spectrum language is the key to a fully comprehensive program for mathematics education.
+Instead of simply reading the words of a proof, they will be able to run and rewrite it.
+Thus a full-spectrum language is the key to a fully and engaging comprehensive program for mathematics education.
 
 \vfill{}
 \renewcommand{\section}[2]{}
