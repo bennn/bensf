@@ -24,7 +24,7 @@ For example, Facebook began with a PHP script but has recently developed their o
 Similarly, Jane Street Capital primarily used Visual Basic until one employee gradually rewrote the core trading software in the safer OCaml language, and Bank of America maintains a trusted layer of COBOL underneath its Java modules.
 This phenomena of combining languages is widespread, and it arises because software projects encompass a spectrum of \emph{changing} goals.
 
-My goal is to build a \emph{full spectrum programming language} that accomodates degrees of safety ranging from high-assurance kernel software to untyped, dynamic scripts.
+My goal is to build a \emph{full spectrum programming language} that accomodates degrees of safety, ranging from the high-assurance required for kernel software to powerful flexibility of scripts.
 More importantly, this language will guarantee the interaction of its component languages.
 Type system invariants will be preserved during interactions with untyped modules, and scripts that grow into full-fledged programs will be straightforward to port into typed or even dependently typed code.
 
@@ -41,10 +41,10 @@ I plan to create safe transitions between his languages and a certified, depende
 The feedback loop for realizing this design will include a theoretical framework\textemdash in particular, a constructive system with dynamically-checkable guarantees\textemdash and an implemention within the Racket ecosystem, which offers an extensible core language for development and diverse libraries to translate.
 My passion for the beautiful concepts in programming languages research and prior experience bringing these concepts to industry recommend me for this task.
 
-My studies will be directed by the experienced faculty at Northeastern.
+My studies will be directed by a group of experienced faculty.
 Matthias Felleisen has spent the past eight years working on Typed Racket with three of his students.
 Amal Ahmed has built the theoretical foundations for a multi-language compiler~\cite{perconti2014verifying}.
-Jan Vitek has been studied the performance of gradually-typed languages, bridging the gap between academia and industry.
+Jan Vitek has studied the performance of gradually-typed languages, bridging the gap between academia and industry.
 I am extremely lucky to have found such a diverse set of mentors at one institution.
 
 \newpage
@@ -52,17 +52,17 @@ I am extremely lucky to have found such a diverse set of mentors at one institut
 \hdr{Broader Impacts}{}
 
 The three motivating examples listed in my introduction are interesting, but relatively benign.
-Much more compelling reasons for building a full spectrum language are the Swedish Pension system, which consists of 320,000 lines of Perl~\cite{jantalk}, and the HACMS project, which seeks to provide a simple interface for programming Unmanned Autonomous Vehicles~\cite{hacms}.
+Much more compelling reasons for building a full spectrum language are the Swedish Pension system, which consists of 320,000 lines of Perl~\cite{jantalk}, and the DARPA I2O HACMS project, which seeks to provide a simple interface for programming Unmanned Autonomous Vehicles~\cite{hacms}.
 
-The pension system quickly grew from a tiny script when the government's hired IT firm failed to deliver a product.
-Sweden needs a plan to certify individual modules and protect its retirees because a complete rewrite of this system is infeasible.
-Conversely, the High-Assurance Cyber Military Systems (HACMS) project is seeking to de-classifying sections of a secure codebase.
+The pension system quickly grew from a script when the government's hired IT firm failed to deliver a product.
+Sweden needs a plan to gradually certify individual modules and protect its retirees because a complete rewrite of this system is infeasible.
+Conversely, the High-Assurance Cyber Military Systems (HACMS) project is seeking to de-classify sections of a secure codebase.
 To create a simple API for autonomous machines, they essentially need a method of linking scripts to dependently typed programs.
 These are precisely the issues I seek to address with my research.
 
 Beyond its applications to real-world systems, a full-spectrum language is ideal for teaching programming concepts to novices because it offers smooth transitions from beginning to advanced topics.
 I hope to introduce my full spectrum language to the Bootstrap program, an afterschool initiative that teaches algebra to middle school students.
-Introducing dependent types in the Bootstrap program would allow a natural transition from algebra to logic and proofs.
+Introducing dependent types in Bootstrap would allow a natural transition from algebra to logic and proofs.
 Dependent types allow extremely powerful reasoning about programs, enough for students to write lemmas and theorems they might find in a textbook.
 Being able to rewrite theorems as programs will help students better understand the ideas they see on the blackboard and improve their formal reasoning skills; programming is a more intuitive and comprehensive introduction to proofs than the rigid ``checklists'' that U.S. high-school students learn in geometry class.
 Thus a full-spectrum language is the key to an engaging and comprehensive program for mathematics education.
