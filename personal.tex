@@ -32,7 +32,7 @@ To support myself, I worked a variety of evening jobs: first at a local restaura
 It was during one of these late nights at the restaurant that one customer, a lawyer, told me about his experiences as a student at Cornell University.
 That night I decided Cornell was my dream school, and applied to the Industrial and Labor Relations program the following year.
 
-To my delight, Cornell accepted me as a guaranteed transfer\footnote{http://cornellsun.com/blog/2013/09/30/guest-room-inside-cornells-guarantee-transfer-system/} and I looked forward to arriving as a sophomore.
+To my delight, Cornell accepted me as a guaranteed transfer~\cite{gt} and I looked forward to arriving as a sophomore.
 Until then, I spent a terrific freshman year at Hudson Valley Community College, taking a few courses to satisfy Cornell's requirements and also two semesters of calculus and physics.
 I loved the welcoming, collegial environment at HVCC\textemdash my teachers were encouraging and helpful, and my fellow students were friendly and cared about learning.
 The experience made me all the more excited about going to Cornell.
@@ -41,12 +41,12 @@ When I finally arrived in Ithaca, I experienced a culture shock.
 The only friendly students I met were those trying to recruit me into student government organizations, and teachers cared more about publishing articles than giving quality lectures and assignments.
 It was a sad time.
 I felt disengaged, my grades dropped, and my evening work as a janitor left me drained.
-Thankfully, my search for affordable housing had ended in an apartment of fun, upperclassmen engineers.
+Thankfully, my search for affordable housing had ended in an apartment of upperclassmen engineers.
 They encouraged me to try a minor in computer science.
-Following their advice was one of the best decisions I have ever made.
+Following this advice was one of the best decisions I have ever made.
 
 At the start of my second year at Cornell, I learned about functional programming and immediately fell in love with its brevity and elegance.
-Functional programming became my hobby that Fall, and I wrote an AI that won a class-wide tournament and earned me a position as a teaching assistant.
+Functional programming became my hobby, and that Fall I wrote an AI that won a class-wide tournament and earned me a position as a teaching assistant.
 Good-bye custodial work!
 I had found my passion.
 The following summer, I got a job at a New York City startup consisting of two entrepreneurs, one real estate broker, and one programmer.
@@ -61,8 +61,8 @@ These companies have three main priorities; they want code to be: self-documenti
 However, the features empowering reusable code in mainstream languages sometimes cause the compiler to diverge.
 For example, a simple type-safe function for comparing two binary trees will cause the Eclipse and Visual Studio compilers to crash with out-of-memory errors.
 
-Curious to learn if similar companies had encountered this issue, I implemented a source code analyzer to detect cycles in the inheritance hierarchy of Java projects.\footnote{https://github.com/bennn/inheritance-cycles}
-Next I modified the \texttt{javac} compiler to log a warning whenever a class/interfaces used in a cycle appeared as a field, type argument, method parameter, or return type.\footnote{https://github.com/bennn/javab}
+Curious to learn if similar companies had encountered this issue, I implemented a source code analyzer to detect cycles in the inheritance hierarchy of Java projects.
+Next I modified the \texttt{javac} compiler to log a warning whenever a class/interfaces used in a cycle appeared as a field, type argument, method parameter, or return type.
 After running this analysis on over 13 million lines of code taken from 60 open-source Java projects, Ross and I realized we could safely remove the cause of these cycles by formalizing the patterns apparent in this case study.
 Thus, Ross, myself, and Ph.D student Fabian M\"uhlb\"ock spent the Fall creating a practical type-checking algorithm that avoids these out-of-memory errors~\cite{shapes}.
 We presented our findings at PLDI '14 in Edinburgh this past summer.
@@ -70,7 +70,7 @@ We presented our findings at PLDI '14 in Edinburgh this past summer.
 \hdr{Conditional Inheritance}{Spring~\textendash~Summer 2014}
 
 Hooked on the excitement of a successful research project, I continued to study object-oriented type systems the following Spring.
-With the issue of infinite loops solved, Ross and I hoped to build a mechanism for code reuse called \emph{conditional inheritance}.
+With the issue of undecidable type-checking solved, Ross and I hoped to build a mechanism for code reuse called \emph{conditional inheritance}.
 For example, conditional inheritance empowers a programmer to declare that a list is clonable provided there is a procedure for making copies of all its elements.
 
 At the time, we thought this extension would be straightforward.
@@ -114,15 +114,15 @@ The connections between programming and mathematics are amazing.
 For this reason, I am excited to join Matthias Felleisen's research group.
 Over the past 20 years, he has created and run outreach projects teaching algebra through functional programming~\cite{felleisen2010teachscheme}.
 %% These efforts began as a series of workshops teaching educators how to leverage programming for effective mathematics education and have expanded to student-oriented initiatives.
-The modern incarnation of this vision is the Bootstrap program,\footnote{http://www.bootstrapworld.org} which brings middle school students in underprivileged neighborhoods (Dorchester, Harlem, East Palo Alto, and many others) up to speed in pre-algebra and geometry.
+The modern incarnation of this vision is the Bootstrap program~\cite{bootstrap}, which brings middle school students in underprivileged neighborhoods (Dorchester, Harlem, East Palo Alto, and many others) up to speed in pre-algebra and geometry.
 Already I have plans to volunteer with Bootstrap, and I fully expect that some of my research will draw from and influence this program, just as Dr. Felleisen's research has since 1995.
 
 \vfill
 \renewcommand{\section}[2]{}
-\begin{multicols}{2}
+%% \begin{multicols}{2}
 \footnotesize
 \bibliographystyle{plain}
 \bibliography{nsf}
-\end{multicols}
+%% \end{multicols}
 
 \end{document}
